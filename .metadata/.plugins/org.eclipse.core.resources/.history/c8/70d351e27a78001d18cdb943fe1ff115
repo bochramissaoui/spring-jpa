@@ -1,0 +1,8 @@
+package projetfinale.finale.metier;
+
+public interface IProduit {
+List<Produit> GetAllProduit();
+void Addproduit(Produit p);
+void deleteProduct(Long id);
+List<Produit>rechercheparmotcle(String mc)
+}

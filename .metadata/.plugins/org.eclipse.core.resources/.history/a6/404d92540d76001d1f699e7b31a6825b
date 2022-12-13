@@ -1,0 +1,5 @@
+package projetfinale.finale.repository;
+
+public interface ProduitRepo {
+
+}

@@ -1,0 +1,14 @@
+package projetfinale.finale.metier;
+
+import java.util.List;
+
+import projetfinale.finale.entite.Produit;
+
+public interface IProduit {
+List<Produit> GetAllProduit();
+void Addproduit(Produit p);
+void deleteProduct(Long id);
+void update(Produit p);
+void getById(Long id)
+List<Produit>rechercheparmotcle(String mc);
+}

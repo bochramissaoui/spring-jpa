@@ -1,0 +1,24 @@
+package projetfinale.finale.controlleur;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import lombok.AllArgsConstructor;
+import projetfinale.finale.entite.Categorie;
+import projetfinale.finale.repository.CategorieRepo;
+import projetfinale.finale.repository.ProduitRepo;
+
+@Controller
+@AllArgsConstructor
+public class Controlleur {
+ProduitRepo Pr ; 
+CategorieRepo Cr;
+@GetMapping("/products")
+public String AfficheTous(Model m ) {
+	m.addAttribute("liste",Pr.findAll());
+	m.addAttribute("categorie", Cr.findAll());
+	return "index";
+}
+
+}

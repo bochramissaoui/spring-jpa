@@ -1,0 +1,52 @@
+package projetfinale.finale.controlleur;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.AllArgsConstructor;
+import projetfinale.finale.entite.Categorie;
+import projetfinale.finale.entite.Produit;
+import projetfinale.finale.repository.CategorieRepo;
+import projetfinale.finale.repository.ProduitRepo;
+
+@Controller
+@AllArgsConstructor
+public class Controlleur {
+ProduitRepo Pr ; 
+CategorieRepo Cr;
+@GetMapping("/products")
+public String AfficheTous(Model m ) {
+	m.addAttribute("liste",Pr.findAll());
+	m.addAttribute("categorie", Cr.findAll());
+	return "index";
+}
+
+@GetMapping("/ProdMotCle")
+public String recherchePatmotcle(@RequestParam("mc") String mc , Model m) {
+	List<Produit>li=Pr.findByNomContains(mc);
+	m.addAttribute("liste",li);
+	return "index";
+}
+
+@GetMapping("/delete/{id}")
+public String supprimer(@PathVariable("id") Long id) {
+	Pr.deleteById(id);
+	return "redirect:/products";
+}
+@PostMapping("/add")
+public String ajout(Model m , @ModelAttribute Produit p , @RequestParam(value="ca") Long idc) {
+	Categorie c= Cr.findById(idc).get();
+	p.setCategorie(c);
+	Pr.save(p);
+	m.addAttribute("liste",Pr.findAll());
+	m.addAttribute("categorie", Cr.findAll());
+	return "redirect:/products";
+}
+}
