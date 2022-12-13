@@ -44,8 +44,8 @@ pageEncoding="windows-1256"%>
                              <%-- <td><a href="delete?id=${p.id}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Supprimer</a></td> --%>
                             <td>
                          
-                               <a href="${pageContext.request.contextPath }/delete/${p.id}" onclick="return confirm('Are you sure?')">Delete</a>
-                               <a href="${pageContext.request.contextPath }/update/${p.id}" >Update</a>
+                               <a href="/delete/${p.id}" onclick="return confirm('Are you sure?')">Delete</a>
+                             <%--   <a href="/update/${p.id}">Update</a> --%>
 					          
 				           </td> 
                          </tr>

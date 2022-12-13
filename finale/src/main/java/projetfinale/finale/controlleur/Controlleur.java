@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
@@ -67,12 +68,16 @@ public String ajout(Model m , @ModelAttribute Produit p , @RequestParam(value="c
 	return "redirect:/products";
 }
 
-@PostMapping("/update/{id}")
-public String showUpdatePage(@PathVariable Long id, Model model) {
-    model.addAttribute("id", id);
-    model.addAttribute("produit", Pr.getById(id).orElse(null));
-    return "updatecontact";
-}
+/*
+ * @RequestMapping(value="/update/{id}") public String
+ * showUpdatePage(@PathVariable Long id, Model model) { model.addAttribute("id",
+ * id); model.addAttribute("produit", Pr.getById(id).orElse(null)); return
+ * "update"; }
+ * 
+ * @PostMapping("/update/{id}") public String update(@PathVariable Long
+ * id, @ModelAttribute("produit") Produit produit) { Pr.update(id, produit);
+ * return "redirect:/products"; }
+ */
 
 
 }
